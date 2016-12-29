@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ingredients: MyString
+  date: 2016-12-27 16:03:06
+  location: MyString
+  price: MyString
+  tasting_notes: MyString
+
+two:
+  ingredients: MyString
+  date: 2016-12-27 16:03:06
+  location: MyString
+  price: MyString
+  tasting_notes: MyString

@@ -1,0 +1,26 @@
+<h1>About this Sandwich</h1>
+
+<h1><%= @sandwich.ingredients %></h1>
+
+<h2>Eaten on <%= @sandwich.show_date %> at <%= @sandwich.location %></h2>
+
+<h2>Eaten by
+
+  <% @sandwich.eaters.each do |eater| %>
+  <%= link_to eater.name, eater %>
+
+  <% end %>
+
+
+</h2>
+
+<h3>Price: <%= @sandwich.price %></h3>
+<h3>Tasting Notes:<br><br>
+  <%= @sandwich.tasting_notes %>
+</h3>
+
+<h3>Comments from Club Members:<br><br>
+<% @sandwich.comments.each do |c| %>
+  <%= c.text %> - <%= link_to c.eater.name, c.eater %>
+<% end %>
+</h3>

@@ -1,0 +1,22 @@
+<h1>Sandwich Club Member Info</h1>
+
+<h1><%= @eater.name %></h1>
+
+<h2>Sandwiches Eaten</h2>
+<ul style="list-style: none;">
+    <% @eater.sandwiches.each do |s| %>
+    <li>
+        <%= link_to s.ingredients, s %>
+    </li>
+    <% end %>
+</ul>
+
+<h3>Comments for Other Sandwiches:
+    <ul style="list-style: none;">
+        <% @eater.comments.each do |c| %>
+        <li>
+            <%= c.text %>
+        </li>
+        <% end %>
+    </ul>
+</h3>

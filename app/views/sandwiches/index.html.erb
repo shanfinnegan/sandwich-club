@@ -1,0 +1,12 @@
+<h1>HI!!!! Look at all these sandwiches!!!!!</h1>
+
+  <h2>
+    <ol>
+        <% @sandwiches.each do |s| %>
+        <li>
+          <%= link_to s.ingredients, s %>
+          <br>
+        </li>
+        <% end %>
+    </ol>
+  </h2>

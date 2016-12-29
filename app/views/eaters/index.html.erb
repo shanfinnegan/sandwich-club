@@ -1,0 +1,12 @@
+<h1>Sandwich Club Eaters</h1>
+
+<h2>
+  <ol>
+      <% @eaters.each do |e| %>
+      <li>
+        <%= link_to e.name, e %>
+        <br>
+      </li>
+      <% end %>
+  </ol>
+</h2>
