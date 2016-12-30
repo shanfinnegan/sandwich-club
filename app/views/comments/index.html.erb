@@ -1,0 +1,9 @@
+<h1>Here Are All the Comments</h1>
+
+<ul style="list-style: none;">
+  <% @comments.each do |c| %>
+  <li>
+    <%= link_to c.text, sandwich_path(c.sandwich_id) %>
+  </li>
+  <% end %>
+</ul>

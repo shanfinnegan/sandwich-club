@@ -22,5 +22,9 @@
 <h3>Comments from Club Members:<br><br>
 <% @sandwich.comments.each do |c| %>
   <%= c.text %> - <%= link_to c.eater.name, c.eater %>
+  <br>
 <% end %>
 </h3>
+
+<%= button_to "Add a Comment", edit_sandwich_path(@sandwich), method: :get %>
+<p><%= link_to "Back to Index", sandwiches_path %></p>
