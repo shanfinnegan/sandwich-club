@@ -14,8 +14,12 @@ class EatersController < ApplicationController
 
   def create
     @eater = Eater.new(eater_params(:name))
-    @eater.save
-    redirect_to new_sandwich_path
+    if @eater.valid?
+      @eater.save
+      redirect_to eaters_path
+    else
+      render :new
+    end
   end
 
   private

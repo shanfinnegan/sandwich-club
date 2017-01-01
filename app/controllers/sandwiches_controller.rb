@@ -9,14 +9,18 @@ class SandwichesController < ApplicationController
   end
 
   def new
-    @eaters = Eater.all
+    @eaters = Eater.all.order(:name)
     @sandwich = Sandwich.new
   end
 
   def create
     @sandwich = Sandwich.new(sandwich_params(:ingredients, :date, :location, :price, :tasting_notes, eater_ids: []))
-    @sandwich.save
-    redirect_to sandwich_path(@sandwich)
+    if @sandwich.valid?
+      @sandwich.save
+      redirect_to sandwich_path(@sandwich)
+    else
+      render :new
+    end
   end
 
   def update
