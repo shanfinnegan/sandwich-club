@@ -1,17 +1,19 @@
 <h1>ADD A NEW SANDWICH TO THE DATABASE</h1>
-<h2>Whom ate this?</h2>
-<p><%= link_to "Add New Member", new_eater_path%></p>
-<label for="eaters">And Or Select from List</label><br>
-<select id="eaters" name="sandwich[eater_ids][]" size="8" multiple="yes">
-  <% @eaters.each do |e| %>
-    <option value="<%= e.id %>"><%= e.name %></option>
-  <% end %>
-</select><br><br>
 
 <%= form_for @sandwich do |f| %>
-<%= f.label :ingredients, "What was on this sandwich? " %>
-<%= f.text_field :ingredients, size: "80" %>
-<br><br>
+  <%= f.label :eaters, "Whom ate this?" %>
+  <br>
+  <%= f.select(:eater_ids, @eaters.map {|e| [e.name, e.id] }, {prompt: "Select one or many"}, {multiple: true, size: 8} )%>
+  <br><br>
+  <%= f.fields_for :eater do |ff| %>
+    <%= ff.label :name, "Add an eater not on this list" %>
+    <%= ff.text_field :name %>
+    <%= ff.hidden_field :id %>
+  <% end %>
+  <br><br>
+  <%= f.label :ingredients, "What was on this sandwich? " %>
+  <%= f.text_field :ingredients, size: "80" %>
+  <br><br>
 <%= f.label :date, "Date of consumption: " %>
 <%= f.date_field :date%>
 <br><br>

@@ -26,5 +26,12 @@
 <% end %>
 </h3>
 
+<%= form_for (@comment) do |f| %>
+<%= f.text_area :text %>
+<%= f.hidden_field :sandwich_id, value: @sandwich.id %>
+<%= f.submit %>
+<% end %>
+
+
 <%= button_to "Add a Comment", edit_sandwich_path(@sandwich), method: :get %>
 <p><%= link_to "Back to Index", sandwiches_path %></p>
