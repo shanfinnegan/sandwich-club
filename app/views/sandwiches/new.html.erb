@@ -1,7 +1,7 @@
 <h1>ADD A NEW SANDWICH TO THE DATABASE</h1>
 
 <%= form_for @sandwich do |f| %>
-  <%= f.label :eaters, "Whom ate this?" %>
+  <%= f.label :eater_ids, "Whom ate this?" %>
   <br>
   <%= f.select(:eater_ids, @eaters.map {|e| [e.name, e.id] }, {prompt: "Select one or many"}, {multiple: true, size: 8} )%>
   <br><br>

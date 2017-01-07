@@ -1,15 +1,13 @@
 class SandwichesController < ApplicationController
 
   def index
-    if params[:ingredients]
-      @sandwiches = Sandwich.where("ingredients LIKE ?", "%#{params[:ingredient]}%")
-    else
-      @sandwiches = Sandwich.all
-    end
+    @sandwiches = Sandwich.all
   end
 
   def show
     set_sandwich
+    @eaters = Eater.all
+    @comments = Comment.all
     @comment = Comment.new
   end
 
@@ -19,14 +17,12 @@ class SandwichesController < ApplicationController
   end
 
   def create
-    binding.pry
     @sandwich = Sandwich.new(sandwich_params)
     if !params[:sandwich][:eater][:name].empty?
       @eater = Eater.find_or_create_by(name: params[:sandwich][:eater][:name])
       @sandwich.eaters << @eater
     end
-    if @sandwich.valid?
-      @sandwich.save
+    if @sandwich.save
       redirect_to sandwich_path(@sandwich)
     else
       render :new
@@ -35,6 +31,16 @@ class SandwichesController < ApplicationController
 
   def update
     set_sandwich
+    if !params[:sandwich][:comment][:text].empty?
+      @comment = Comment.new(text: params[:sandwich][:comment][:text], sandwich_id: @sandwich.id)
+      if !params[:sandwich][:comment][:eater][:name].empty?
+        @eater = Eater.find_or_create_by(name: params[:sandwich][:comment][:eater][:name])
+        @comment.eater = @eater
+      end
+      @sandwich.comments << @comment
+    end
+      @sandwich.save
+      redirect_to sandwich_path(@sandwich)
   end
 
   private
@@ -44,7 +50,7 @@ class SandwichesController < ApplicationController
   end
 
   def sandwich_params
-    params.require(:sandwich).permit(:ingredients, :date, :location, :price, :tasting_notes, eater_ids: [], eater_attributes: [:id, :name])
+    params.require(:sandwich).permit(:ingredients, :date, :location, :price, :tasting_notes, eater_ids: [], eater_attributes: [:id, :name], comment_attributes: [:text, :sandwich_id, :eater_id])
   end
-# , eater_ids: [], eater_attributes: [:id, :name]
+
 end

@@ -25,13 +25,17 @@
   <br>
 <% end %>
 </h3>
-
-<%= form_for (@comment) do |f| %>
-<%= f.text_area :text %>
-<%= f.hidden_field :sandwich_id, value: @sandwich.id %>
-<%= f.submit %>
+<h2>Add a Comment</h2>
+<%= form_for @sandwich do |f| %>
+<%= f.fields_for :comment do |ff| %>
+  <%= ff.text_area :text, size: "150x2" %><br><br>
+    <%= ff.fields_for :eater do |fff| %>
+    <%= fff.label :name, "Your Name " %>
+    <%= fff.text_field :name %>
+    <%= fff.hidden_field :id %>
+  <% end %>
+<% end %>
+<%= f.submit "Add Comment"%>
 <% end %>
 
-
-<%= button_to "Add a Comment", edit_sandwich_path(@sandwich), method: :get %>
 <p><%= link_to "Back to Index", sandwiches_path %></p>

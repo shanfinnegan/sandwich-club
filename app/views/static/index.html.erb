@@ -8,8 +8,3 @@
 <h2><%= link_to "SEE ALL MEMBERS", eaters_path%></h2>
 
 <h2><%= link_to "READ ALL COMMENTS", comments_path%></h2>
-
-<%= form_tag(sandwiches_path method: :get) do %>
-  <%= text_field_tag :sandwich, params[:sandwich]%>
-  <%= submit_tag 'SEARCH FOR SOMETHING', name: nil %>
-<% end %>
