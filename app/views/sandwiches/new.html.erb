@@ -3,10 +3,10 @@
 <%= form_for @sandwich do |f| %>
   <%= f.label :eater_ids, "Whom ate this?" %>
   <br>
-  <%= f.select(:eater_ids, @eaters.map {|e| [e.name, e.id] }, {prompt: "Select one or many"}, {multiple: true, size: 8} )%>
+  <%= f.select(:eater_ids, @eaters.map {|e| [e.name, e.id] }, {prompt: "Select One or Many"}, {multiple: true, size: 8} )%>
   <br><br>
   <%= f.fields_for :eater do |ff| %>
-    <%= ff.label :name, "Add an eater not on this list" %>
+    <%= ff.label :name, "Add an eater not on this list " %>
     <%= ff.text_field :name %>
     <%= ff.hidden_field :id %>
   <% end %>
@@ -14,17 +14,17 @@
   <%= f.label :ingredients, "What was on this sandwich? " %>
   <%= f.text_field :ingredients, size: "80" %>
   <br><br>
-<%= f.label :date, "Date of consumption: " %>
+<%= f.label :date, "Date of consumption " %>
 <%= f.date_field :date%>
 <br><br>
 <%= f.label :location, "Where was this eaten? " %>
 <%= f.text_field :location %>
 <br><br>
-<%= f.label :price, "Price: " %>
+<%= f.label :price, "Price " %>
 <%= f.text_field :price %>
 <br><br>
 
-<%= f.label :tasting_notes, "Thoughts about this sandwich: " %>
+<%= f.label :tasting_notes, "Thoughts about this sandwich" %>
 <br>
 <%= f.text_area :tasting_notes, size: "100x10" %>
 <br><br>

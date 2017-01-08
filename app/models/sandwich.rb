@@ -13,8 +13,8 @@ class Sandwich < ApplicationRecord
 
   private
 
-  def blank_comment?(att)
-    att[:text].blank? || att[:eater_id].blank?
+  def blank_comment?(attributes)
+    attributes[:text].blank? || attributes[:eater_id].blank?
   end
 
 end

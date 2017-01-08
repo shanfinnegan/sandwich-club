@@ -14,4 +14,26 @@
  *= require_self
  */
 
-font-family: 'Montserrat', sans-serif;
+body {
+    font: font-family: 'Montserrat', sans-serif;
+    color: #222;
+    background-color: #fff4f4;
+}
+
+a {
+    text-decoration: none;
+    color: #4A235A;
+}
+
+a:visited {
+    color: #dcfcdc;
+}
+
+a:hover {
+    color: #D2B4DE;
+}
+
+#page {
+    padding: 50px;
+    margin: auto;
+}
