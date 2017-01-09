@@ -15,9 +15,10 @@
  */
 
 body {
-    font: font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #222;
     background-color: #fff4f4;
+    font-size: 1.2em;
 }
 
 a {

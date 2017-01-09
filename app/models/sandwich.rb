@@ -12,7 +12,6 @@ class Sandwich < ApplicationRecord
   end
 
   private
-
   def blank_comment?(attributes)
     attributes[:text].blank? || attributes[:eater_id].blank?
   end

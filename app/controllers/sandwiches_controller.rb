@@ -31,16 +31,19 @@ class SandwichesController < ApplicationController
 
   def update
     set_sandwich
-    if !params[:sandwich][:comment][:text].empty?
-      @comment = Comment.new(text: params[:sandwich][:comment][:text], sandwich_id: @sandwich.id)
-      if !params[:sandwich][:comment][:eater][:name].empty?
-        @eater = Eater.find_or_create_by(name: params[:sandwich][:comment][:eater][:name])
-        @comment.eater = @eater
+    if @sandwich.update(sandwich_params)
+      if !params[:sandwich][:comment][:text].empty?
+        @comment = Comment.new(text: params[:sandwich][:comment][:text], sandwich_id: @sandwich.id)
+        if !params[:sandwich][:comment][:eater][:name].empty?
+          @eater = Eater.find_or_create_by(name: params[:sandwich][:comment][:eater][:name])
+          @comment.eater = @eater
+        end
+        @sandwich.comments << @comment
       end
-      @sandwich.comments << @comment
-    end
-      @sandwich.save
       redirect_to sandwich_path(@sandwich)
+    else
+      render :show
+    end
   end
 
   private

@@ -1,25 +1,13 @@
 // Place all the styles related to the static controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$font-stack: 'Montserrat', sans-serif;
-$primary-color: #222;
-$background-color: #fff4f4;
-
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
-  background-color: $background-color;
-}
-
-a {
-	text-decoration: none;
-  color: #4A235A;
-}
-
-a:visited {
-    color: #dcfcdc;
-}
-
-a:hover {
-    color: #D2B4DE;
+.welcome {
+    background-image: url('sandoclub.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    color: #222;
+    background-color: #fff4f4;
+    font-size: 1.2em;
 }
