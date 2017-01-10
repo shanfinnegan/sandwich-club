@@ -19,12 +19,13 @@ class SandwichesController < ApplicationController
   def create
     @sandwich = Sandwich.new(sandwich_params)
     if !params[:sandwich][:eater][:name].empty?
-      @eater = Eater.find_or_create_by(name: params[:sandwich][:eater][:name])
+      @eater = Eater.find_or_create_by(name: capitalize_name(params[:sandwich][:eater][:name]))
       @sandwich.eaters << @eater
     end
     if @sandwich.save
       redirect_to sandwich_path(@sandwich)
     else
+      @eaters = Eater.all.order(:name)
       render :new
     end
   end
@@ -32,24 +33,25 @@ class SandwichesController < ApplicationController
   def update
     set_sandwich
     if @sandwich.update(sandwich_params)
-      if !params[:sandwich][:comment][:text].empty?
-        @comment = Comment.new(text: params[:sandwich][:comment][:text], sandwich_id: @sandwich.id)
-        if !params[:sandwich][:comment][:eater][:name].empty?
-          @eater = Eater.find_or_create_by(name: params[:sandwich][:comment][:eater][:name])
-          @comment.eater = @eater
-        end
-        @sandwich.comments << @comment
-      end
+      @comment = Comment.new(text: params[:sandwich][:comment][:text], sandwich_id: @sandwich.id)
+      @eater = Eater.find_or_create_by(name: capitalize_name(params[:sandwich][:comment][:eater][:name]))
+      @comment.eater = @eater
+      @comment.save
+      @sandwich.comments << @comment
       redirect_to sandwich_path(@sandwich)
     else
+      @eaters = Eater.all.order(:name)
       render :show
     end
   end
 
   private
-
   def set_sandwich
     @sandwich = Sandwich.find(params[:id])
+  end
+
+  def capitalize_name(name)
+    name.split.map(&:capitalize)*' '
   end
 
   def sandwich_params
