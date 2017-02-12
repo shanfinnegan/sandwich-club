@@ -8,7 +8,6 @@ describe Sandwich do
   end
 
   it "returns the date as a string" do
-
     expect(Sandwich.new(attributes).show_date).to eq "Saturday, August 20, 2011"
   end
 
